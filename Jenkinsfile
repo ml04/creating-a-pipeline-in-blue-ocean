@@ -1,8 +1,8 @@
 pipeline {
   agent {
     docker {
-      image 'node:6-alpine'
       args '-p 3000:3000'
+      image 'tomcat:8.5.50-jdk8-openjdk'
     }
 
   }
