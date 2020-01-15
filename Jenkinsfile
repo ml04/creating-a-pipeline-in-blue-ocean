@@ -1,26 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
-      parallel {
-        stage('Build 1') {
-          steps {
-            echo 'docker:build image of the application'
-          }
-        }
-
-        stage('Build 2') {
-          steps {
-            echo 'docker:build image of the application'
-          }
-        }
-
-        stage('Build 3') {
-          steps {
-            echo 'docker:build image of the application'
-          }
-        }
-
+    stage('Build ') {
+      steps {
+        echo 'docker:build image of the application'
       }
     }
 
@@ -35,6 +18,7 @@ pipeline {
         stage('Docker-compose 2') {
           steps {
             echo 'Run docker-compose up that uses a previously built app image'
+            echo 'X'
           }
         }
 
