@@ -54,11 +54,5 @@ pipeline {
       }
     }
 
-    stage('Deliver') {
-      steps {
-        echo 'Run deliver'
-      }
-    }
-
   }
 }
