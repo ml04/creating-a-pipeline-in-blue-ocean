@@ -54,5 +54,11 @@ pipeline {
       }
     }
 
+    stage('Deliver') {
+      steps {
+        echo 'Deliver a tested solution'
+      }
+    }
+
   }
 }
