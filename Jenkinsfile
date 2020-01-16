@@ -1,71 +1,41 @@
 pipeline {
-  agent any
+  agent { label 'master' }
   stages {
-    stage('Build ') {
-      steps {
-        echo 'docker:build image of the application'
-      }
-    }
-
-    stage('Docker-compose and test') {
+    stage('Build and Test') {
       parallel {
-        stage('Compose and test HIGH') {
+        stage("Build and Test Linux") {
           stages {
-            stage('Docker-compose 1') {
+            stage("Build (Linux)") {
+              agent any
               steps {
-                echo 'Run docker-compose up that uses a previously built app image'
+                echo "Inside for loop 1"
               }
             }
-
-            stage('HIGH Test') {
+            stage("Test (Linux)") {
+              agent any
               steps {
-                echo 'Run a set of High BDD tests'
+                echo "Inside for loop 2"
               }
             }
           }
         }
-
-        stage('Compose and test MED') {
+        stage("Build and Test Windows") {
           stages {
-            stage('Docker-compose 2') {
+            stage("Build (Windows)") {
+              agent any
               steps {
-                echo 'Run docker-compose up that uses a previously built app image'
-                echo 'X'
+                echo "Inside for loop 3"
               }
             }
-
-            stage('MED Test') {
+            stage("Test (Windows)") {
+              agent any
               steps {
-                echo 'Run a set of MED BDD tests'
+                echo "Inside for loop 4"
               }
             }
           }
         }
-
-        stage('Compose and test LOW') {
-          stages {
-            stage('Docker-compose 3') {
-              steps {
-                echo 'Run docker-compose up that uses a previously built app image'
-              }
-            }
-
-            stage('LOW Test') {
-              steps {
-                echo 'Run a set of Low BDD tests'
-              }
-            }
-          }
-        }
-
       }
     }
-
-    stage('Deliver') {
-      steps {
-        echo 'Deliver a tested solution'
-      }
-    }
-
   }
 }
